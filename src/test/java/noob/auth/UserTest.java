@@ -29,7 +29,7 @@ public class UserTest {
 		User user=new User();
 		Date date=new Date();
 		user.setUserName("zhangsan");
-		user.setPassword("123");
+		user.setPassword("123456");
 		user.setStatus((byte)1);
 		user.setCreateTime(date);
 		int i = userService.insert(user);

@@ -11,11 +11,11 @@ import com.chainyu.noob.service.UserService;
 public class UserServiceImpl implements UserService{
 
 	@Autowired
-	private UserMapper userDao;
+	private UserMapper userMapper;
 	
 	@Override
 	public int insert(User user) {
-		int insert = userDao.insert(user);
+		int insert = userMapper.insert(user);
 		return insert;
 	}
 

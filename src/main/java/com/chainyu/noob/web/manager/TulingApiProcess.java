@@ -9,8 +9,6 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 /**
  * 调用图灵机器人api接口，获取智能回复内容
@@ -52,7 +50,7 @@ public class TulingApiProcess {
 			return "对不起，你说的话真是太高深了……";
 		}
 		
-		try {
+		/*try {
 			JSONObject json = new JSONObject(result);
 			//以code=100000为例，参考图灵机器人api文档
 			if(100000==json.getInt("code")){
@@ -61,7 +59,7 @@ public class TulingApiProcess {
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		return result;
 	}
 }
