@@ -13,4 +13,14 @@ public class UserController {
 		model.addAttribute("name", "zhangsan");
 		return "/showInfo";
 	}
+	
+	@RequestMapping("/index.htm")
+	public String Index(){
+		return "/index";
+	}
+	
+	@RequestMapping("/login.htm")
+	public String Login(){
+		return "/login";
+	}
 }
