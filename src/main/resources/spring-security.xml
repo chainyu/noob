@@ -28,7 +28,6 @@
 				max-sessions="1" error-if-maximum-exceeded="true" />
 		</session-management>
 		
-		<custom-filter ref="userLockCheckFilter" before="FORM_LOGIN_FILTER" />
 		<custom-filter ref="loginProcessFilter" position="FORM_LOGIN_FILTER" />
 		<custom-filter ref="myFilter" before="FILTER_SECURITY_INTERCEPTOR" />
 		
@@ -57,7 +56,6 @@
 		<beans:property name="securityMetadataSource" ref="metadataSourceManagerImpl" />
 	</beans:bean>
 	
-	<beans:bean id="userLockCheckFilter" class="com.baozun.nebulaplus.web.interceptor.UserLockCheckFilter" />
 	
 	<!-- 实现了UserDetailsService的Bean -->
 	<authentication-manager alias="myAuthenticationManager">
