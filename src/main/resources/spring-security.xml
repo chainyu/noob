@@ -28,26 +28,27 @@
 				max-sessions="1" error-if-maximum-exceeded="true" />
 		</session-management>
 		
+		<!-- position替换 -->
 		<custom-filter ref="loginProcessFilter" position="FORM_LOGIN_FILTER" />
 		<custom-filter ref="myFilter" before="FILTER_SECURITY_INTERCEPTOR" />
 		
 	</http>
+	
+	<beans:bean id="sessionRegistry" 
+	     class="org.springframework.security.core.session.SessionRegistryImpl" />
   
-<beans:bean id="loginProcessFilter"
-		class="com.baozun.nebulaplus.web.controller.auth.MyUsernamePasswordAuthenticationFilter">
+  <!--登陆滤器 -->
+   <beans:bean id="loginProcessFilter"
+		class="com.chainyu.noob.web.security.auth.MyUsernamePasswordAuthenticationFilter">
 		<beans:property name="authenticationManager" ref="myAuthenticationManager" />
 		<beans:property name="filterProcessesUrl" value="/j_spring_security_check" />
-		<beans:property name="authenticationSuccessHandler"
-			ref="myAuthenticationSuccessHandler" />
-		<beans:property name="authenticationFailureHandler"
-			ref="myAuthenticationFailureHandler" />
+		<beans:property name="authenticationSuccessHandler" ref="myAuthenticationSuccessHandler" />
+		<beans:property name="authenticationFailureHandler" ref="myAuthenticationFailureHandler" />
 	</beans:bean>
 
-	<beans:bean id="sessionRegistry"
-		class="org.springframework.security.core.session.SessionRegistryImpl" />
 	<!--授权过滤器 -->
 	<beans:bean id="myFilter"
-		class="com.baozun.nebulaplus.web.interceptor.SecurityInterceptor">
+		class="com.chainyu.noob.web.interceptor.SecurityInterceptor">
 		<!-- 用户拥有的权限 -->
 		<beans:property name="authenticationManager" ref="myAuthenticationManager" />
 		<!-- 用户是否拥有所请求资源的权限 -->
@@ -67,14 +68,14 @@
 		</authentication-provider>
 	</authentication-manager>
 
-	<beans:bean id="userDetailManagerImpl"
-		class="com.baozun.nebulaplus.manager.auth.UserDetailManagerImpl" />
+	<beans:bean id="userServiceImpl"
+		class="com.chainyu.noob.web.manager.auth.UserDetailManagerImpl" />
 
 	<beans:bean id="accessDecisionManagerImpl"
-		class="com.baozun.nebulaplus.manager.auth.AccessDecisionManagerImpl" />
+		class="com.chainyu.noob.web.manager.auth.AccessDecisionManagerImpl" />
 
 	<beans:bean id="metadataSourceManagerImpl"
-		class="com.baozun.nebulaplus.manager.auth.MetadataSourceManagerImpl" />
+		class="com.chainyu.noob.web.manager.auth.MetadataSourceManagerImpl" />
 
 
 	<!-- 用户的密码加密算法 -->
