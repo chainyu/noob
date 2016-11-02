@@ -86,24 +86,24 @@
 
 	<!-- 认证成功后处理流程 -->
 	<beans:bean id="myAuthenticationSuccessHandler"
-		class="com.baozun.nebulaplus.web.controller.auth.MyAuthenticationSuccessHandler">
+		class="com.chainyu.noob.web.security.auth.MyAuthenticationSuccessHandler">
 	</beans:bean>
 
 	<!-- 请求拒绝处理，可以兼容http和ajax请求 -->
 	<beans:bean id="accessDeniedHandler"
-		class="com.baozun.nebulaplus.web.controller.auth.MyAccessDeniedHandlerImpl">
+		class="com.chainyu.noob.web.security.auth.MyAccessDeniedHandler">
 		<beans:property name="accessDeniedUrl" value="/access-denied.htm" />
 	</beans:bean>
 
 	<!-- 认证失败，可以兼容http和ajax请求 -->
 	<beans:bean id="myAuthenticationFailureHandler"
-		class="com.baozun.nebulaplus.web.controller.auth.MyAuthenticationFailureHandler">
+		class="com.chainyu.noob.web.security.auth.MyAuthenticationFailureHandler">
 		<beans:property name="loginFormUrl" value="/login.htm" />
 	</beans:bean>
 
 	<!-- 未登录的切入点 -->
 	<beans:bean id="authenticationProcessingFilterEntryPoint"
-		class="com.baozun.nebulaplus.web.controller.auth.MyLoginUrlAuthenticationEntryPoint">
+		class="com.chainyu.noob.web.security.auth.MyLoginUrlAuthenticationEntryPoint">
 		<beans:property name="loginFormUrl" value="/login.htm"></beans:property>
 	</beans:bean>
 </beans:beans>  

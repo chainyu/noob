@@ -1,19 +1,3 @@
-/**
- * Copyright (c) 2015 Baozun All Rights Reserved.
- *
- * This software is the confidential and proprietary information of Baozun.
- * You shall not disclose such Confidential Information and shall use it only in
- * accordance with the terms of the license agreement you entered into
- * with Baozun.
- *
- * BAOZUN MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
- * SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
- * PURPOSE, OR NON-INFRINGEMENT. BAOZUN SHALL NOT BE LIABLE FOR ANY DAMAGES
- * SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
- * THIS SOFTWARE OR ITS DERIVATIVES.
- *
- */
 package com.chainyu.noob.web.security;
 
 import java.util.ArrayList;
@@ -22,8 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /**
@@ -32,8 +15,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
  */
 public class SecurityProcessor {
 	private static List<SecurityActivity> activities = new ArrayList<SecurityActivity>();
-	private static final Log LOG = LogFactory.getLog(SecurityProcessor.class);
-
+	private static final Logger LOGGER = Logger.getLogger(SecurityProcessor.class);
 	static {
 		activities.add(new SQLInjectionEncodeSecurityActivity());
 		activities.add(new HtmlEscapeSecurityActivity());
@@ -48,7 +30,7 @@ public class SecurityProcessor {
 			SecurityActivity securityActivity = iterator.next();
 			result = securityActivity.execute(result);
 		}
-		LOG.debug(String.format("original data: [%s] new data: [%s]", value, result));
+		LOGGER.debug(String.format("original data: [%s] new data: [%s]", value, result));
 		return result;
 	}
 	

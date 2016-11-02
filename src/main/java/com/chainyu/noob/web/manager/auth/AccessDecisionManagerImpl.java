@@ -2,8 +2,8 @@ package com.chainyu.noob.web.manager.auth;
 
 import java.util.Collection;
 import java.util.Iterator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import org.apache.log4j.Logger;
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.ConfigAttribute;
@@ -13,6 +13,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.stereotype.Service;
+
 import com.chainyu.noob.model.auth.command.MyUserDetails;
 
 
@@ -23,8 +24,7 @@ import com.chainyu.noob.model.auth.command.MyUserDetails;
 @Service
 public class AccessDecisionManagerImpl implements AccessDecisionManager {
 	
-	private static final Logger log = LoggerFactory
-	.getLogger(AccessDecisionManagerImpl.class);
+	private static final Logger LOGGER = Logger.getLogger(AccessDecisionManagerImpl.class);
 
 	// In this method, need to compare authentication with configAttributes.
 	// 1, A object is a URL, a filter was find permission configuration by this
@@ -53,7 +53,7 @@ public class AccessDecisionManagerImpl implements AccessDecisionManager {
 			String needPrivilege = ((SecurityConfig) ca).getAttribute();
 			for (GrantedAuthority ga : userDetails.getAuthorities()) {
 				if (needPrivilege.equals(ga.getAuthority())) {
-					log.info("accessLog:" + userDetails.getUser().getId() + ":" + userDetails.getUsername()+ ":" + fi.getRequestUrl());
+					LOGGER.info("accessLog:" + userDetails.getUser().getId() + ":" + userDetails.getUsername()+ ":" + fi.getRequestUrl());
 					return;
 				}
 			}

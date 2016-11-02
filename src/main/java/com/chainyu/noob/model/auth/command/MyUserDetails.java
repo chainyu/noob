@@ -16,8 +16,6 @@ public class MyUserDetails implements org.springframework.security.core.userdeta
 
 	/**
 	 * 这里获取用户所有的角色
-	 * 当用户为店长(isAdmin =true)时，不必设值
-	 * 非店长用户，需设值
 	 * 
 	 */
 	private Collection<GrantedAuthority>	authorities;

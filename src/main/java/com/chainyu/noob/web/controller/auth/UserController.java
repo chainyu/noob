@@ -1,12 +1,14 @@
-package com.chainyu.noob.web.controller;
+package com.chainyu.noob.web.controller.auth;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.chainyu.noob.web.controller.BaseController;
+
 @Controller
 @RequestMapping("/user")
-public class UserController {
+public class UserController extends BaseController{
 
 	@RequestMapping("/info.htm")
 	public String showUserInfo(Model model){
@@ -14,13 +16,4 @@ public class UserController {
 		return "/showInfo";
 	}
 	
-	@RequestMapping("/index.htm")
-	public String Index(){
-		return "/index";
-	}
-	
-	@RequestMapping("/login.htm")
-	public String Login(){
-		return "/login";
-	}
 }
