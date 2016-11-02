@@ -18,9 +18,6 @@ public class Role extends BaseModel{
 	/** 角色描述. */
 	private String description;
 
-	/** 所属店铺. */
-	private Long storeId;
-
 	/** 状态. */
 	private Byte status;
 
@@ -52,14 +49,6 @@ public class Role extends BaseModel{
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public Long getStoreId() {
-		return storeId;
-	}
-
-	public void setStoreId(Long storeId) {
-		this.storeId = storeId;
 	}
 
 	public Byte getStatus() {

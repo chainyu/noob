@@ -3,6 +3,11 @@ package com.chainyu.noob.model.auth.domain;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * 用户.
+ * @author chainyu_zhang
+ * @date 2016年11月2日 下午9:39:01
+ */
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 912671921606364003L;
