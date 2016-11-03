@@ -3,15 +3,21 @@ package com.chainyu.noob.web.manager.auth;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.stereotype.Service;
+
+import com.chainyu.noob.model.auth.command.PrivilegeUrlRoleCommand;
+import com.chainyu.noob.service.PrivilegeUrlService;
+import com.chainyu.noob.utils.Validator;
 
 
 /**
@@ -22,8 +28,8 @@ import org.springframework.stereotype.Service;
 public class MetadataSourceManagerImpl implements
 		FilterInvocationSecurityMetadataSource {
 	
-	/*@Autowired
-	private ReservedPrivilegeUrlService privilegeUrlService;*/
+	@Autowired
+	private PrivilegeUrlService privilegeUrlService;
 	
 	private RequestMatcher pathMatcher;
 	
@@ -54,6 +60,12 @@ public class MetadataSourceManagerImpl implements
 	public void loadResourceDefine() throws Exception {
 		Map<String, Collection<ConfigAttribute>> localResourceMap =new HashMap<String, Collection<ConfigAttribute>>();
 		
+		List<PrivilegeUrlRoleCommand> urlRoleCommands =privilegeUrlService.findAllUrls();
+		if(Validator.isNotNullOrEmpty(urlRoleCommands)){
+			for (PrivilegeUrlRoleCommand privilegeUrlRoleCommand : urlRoleCommands) {
+				
+			}
+		}
 		/*List<PrivilegeUrlRoleCommand> urlRoleCommands =privilegeUrlService.findAllPrivilegeUrlList();
 		if(Validator.isNotNullOrEmpty(urlRoleCommands)){
 			Set<String> urls =new HashSet<String>();

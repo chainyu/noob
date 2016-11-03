@@ -15,8 +15,14 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public int insert(User user) {
-		int insert = userMapper.insert(user);
+		int insert = userMapper.save(user);
 		return insert;
+	}
+
+	@Override
+	public User findByUserName(String userName) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

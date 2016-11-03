@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.chainyu.noob.dao.UserMapper">
+<mapper namespace="com.chainyu.noob.dao.auth.UserMapper">
 	<sql id="Base_Column_List">
 		id, user_name, password, status, create_time, update_time, real_name,
 		first_name,
@@ -15,7 +15,7 @@
 	</select>
 	<delete id="deleteById">
 		delete from t_au_user
-		where id = #{id,jdbcType=BIGINT}
+		where id = #{id}
 	</delete>
 	<insert id="save" parameterType="User">
 		insert into t_au_user (
@@ -54,7 +54,7 @@
 	<update id="updateByIdSelective" parameterType="User">
 		update t_au_user
 		<set>
-			update_time = #{updateTime}
+			update_time = now()
 			<if test="userName != null">
 				user_name = #{userName},
 			</if>
