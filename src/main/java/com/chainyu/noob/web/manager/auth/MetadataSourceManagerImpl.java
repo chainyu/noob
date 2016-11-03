@@ -3,6 +3,7 @@ package com.chainyu.noob.web.manager.auth;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -11,7 +12,9 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;
+import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.stereotype.Service;
 
@@ -59,46 +62,30 @@ public class MetadataSourceManagerImpl implements
 	@PostConstruct
 	public void loadResourceDefine() throws Exception {
 		Map<String, Collection<ConfigAttribute>> localResourceMap =new HashMap<String, Collection<ConfigAttribute>>();
-		
 		List<PrivilegeUrlRoleCommand> urlRoleCommands =privilegeUrlService.findAllUrls();
 		if(Validator.isNotNullOrEmpty(urlRoleCommands)){
 			for (PrivilegeUrlRoleCommand privilegeUrlRoleCommand : urlRoleCommands) {
-				
-			}
-		}
-		/*List<PrivilegeUrlRoleCommand> urlRoleCommands =privilegeUrlService.findAllPrivilegeUrlList();
-		if(Validator.isNotNullOrEmpty(urlRoleCommands)){
-			Set<String> urls =new HashSet<String>();
-			for (PrivilegeUrlRoleCommand command : urlRoleCommands) {
-				urls.add(command.getUrl());
-			}
-			Iterator<String> it =urls.iterator();
-			String url =null;
-			Collection<ConfigAttribute> configAttributes =null;
-			while(it.hasNext()){
-				url =it.next();
-				configAttributes =new ArrayList<ConfigAttribute>();
-				for (PrivilegeUrlRoleCommand command : urlRoleCommands) {
-					if(url.equals(command.getUrl())){
-						SecurityConfig roleIdAuthority =new SecurityConfig(
-								command.getRoleId().toString());
-						if(Validator.isNullOrEmpty(configAttributes)||
-								!configAttributes.contains(roleIdAuthority)){
-							configAttributes.add(roleIdAuthority);
-						}
+				String url=privilegeUrlRoleCommand.getUrl();
+				String attribute=privilegeUrlRoleCommand.getRoleId().toString();
+				Collection<ConfigAttribute> attributes = localResourceMap.get(url);
+				if(Validator.isNullOrEmpty(attributes)){
+					attributes=new ArrayList<ConfigAttribute>();
+					attributes.add(new SecurityConfig(attribute));
+				}else{
+					if(!attributes.contains(attribute)){
+						attributes.add(new SecurityConfig(attribute));
 					}
 				}
-				localResourceMap.put(url, configAttributes);
+				localResourceMap.put(url, attributes);
 			}
-		}*/
-		
+		}
 		resourceMap = localResourceMap;
 	}
 
 	// 返回所请求资源所需要的角色ids集合
 	public Collection<ConfigAttribute> getAttributes(Object object)
 			throws IllegalArgumentException {
-		/*String reqUrl =((FilterInvocation) object).getRequestUrl();
+		String reqUrl =((FilterInvocation) object).getRequestUrl();
 		if(Validator.isNotNullOrEmpty(resourceMap)){
 			Collection<ConfigAttribute> configAttributes =null;
 			String urlKey ="";
@@ -127,10 +114,8 @@ public class MetadataSourceManagerImpl implements
 				}
 			}
 		}
-		*/
-		Collection<ConfigAttribute> returnCollection =new ArrayList<ConfigAttribute>();
-		returnCollection.add(new SecurityConfig("-1"));
-		return returnCollection;
+		return null;
+		
 	}
 	
 
