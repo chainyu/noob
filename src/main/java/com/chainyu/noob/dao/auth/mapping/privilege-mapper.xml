@@ -4,7 +4,7 @@
 	<sql id="Base_Column_List">
 	id, code, name, description, group_name, status, create_time, update_time 
 	</sql>
-	<select id="selectById" resultType="Privilege">
+	<select id="findById" resultType="Privilege">
 		select
 		<include refid="Base_Column_List" />
 		from t_au_Privilege

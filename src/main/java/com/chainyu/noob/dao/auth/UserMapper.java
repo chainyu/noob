@@ -2,15 +2,11 @@ package com.chainyu.noob.dao.auth;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.chainyu.noob.dao.BaseMapper;
 import com.chainyu.noob.model.auth.domain.User;
 
-public interface UserMapper {
-    User selectById(@Param("id")Long id);
-    
-    int deleteById(@Param("id")Long id);
-    
-    int save(User user);
+public interface UserMapper extends BaseMapper<User, Long>{
 
-    int updateByIdSelective(User user);
+	User findByUserName(@Param("userName")String userName);
 
 }

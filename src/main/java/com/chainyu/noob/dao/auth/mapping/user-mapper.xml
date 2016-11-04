@@ -7,16 +7,26 @@
 		last_name, email, mobile, phone, description, avatar, last_password,
 		pwd_change_time
 	</sql>
-	<select id="selectById" resultType="User">
+	
+	<select id="findById" resultType="User">
 		select
 		<include refid="Base_Column_List" />
 		from t_au_user
 		where id = #{id}
 	</select>
+	
+	<select id="findByUserName" resultType="User">
+	select
+		<include refid="Base_Column_List" />
+		from t_au_user
+		where user_name = #{userName}
+	</select>
+	
 	<delete id="deleteById">
 		delete from t_au_user
 		where id = #{id}
 	</delete>
+	
 	<insert id="save" parameterType="User">
 		insert into t_au_user (
 		user_name,
@@ -51,6 +61,7 @@
 		#{lastPassword},
 		now())
 	</insert>
+	
 	<update id="updateByIdSelective" parameterType="User">
 		update t_au_user
 		<set>

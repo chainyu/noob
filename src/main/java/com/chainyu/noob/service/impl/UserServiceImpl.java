@@ -11,18 +11,16 @@ import com.chainyu.noob.service.UserService;
 public class UserServiceImpl implements UserService{
 
 	@Autowired
-	private UserMapper userMapper;
+	private UserMapper userDao;
 	
 	@Override
-	public int insert(User user) {
-		int insert = userMapper.save(user);
-		return insert;
+	public int save(User user) {
+		return userDao.save(user);
 	}
 
 	@Override
 	public User findByUserName(String userName) {
-		// TODO Auto-generated method stub
-		return null;
+		return userDao.findByUserName(userName);
 	}
 
 }

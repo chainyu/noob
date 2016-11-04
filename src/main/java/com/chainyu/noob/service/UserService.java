@@ -4,7 +4,15 @@ import com.chainyu.noob.model.auth.domain.User;
 
 public interface UserService {
 
-	public int insert(User user);
+	/**
+	 * @param user
+	 * @return
+	 */
+	public int save(User user);
 
+	/**
+	 * @param userName
+	 * @return
+	 */
 	public User findByUserName(String userName);
 }

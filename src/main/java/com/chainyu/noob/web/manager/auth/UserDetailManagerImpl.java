@@ -14,8 +14,8 @@ import org.springframework.stereotype.Service;
 import com.chainyu.noob.model.auth.command.MyUserDetails;
 import com.chainyu.noob.model.auth.domain.Role;
 import com.chainyu.noob.model.auth.domain.User;
+import com.chainyu.noob.service.RoleService;
 import com.chainyu.noob.service.UserService;
-import com.chainyu.noob.service.UserRoleService;
 import com.chainyu.noob.utils.Validator;
 
 
@@ -30,7 +30,7 @@ public class UserDetailManagerImpl implements UserDetailsService{
 	@Autowired
 	private UserService userService;
 	@Autowired
-	private UserRoleService userRoleService;
+	private RoleService roleService;
 	
 	/**
 	 * 加载用户信息、获取权限
@@ -41,7 +41,7 @@ public class UserDetailManagerImpl implements UserDetailsService{
 		User user=userService.findByUserName(userName);
 		if(Validator.isNullOrEmpty(user))
 			throw new UsernameNotFoundException(userName+": not fond.");
-		List<Role> userRoles=userRoleService.findByUserId(user.getId());
+		List<Role> userRoles=roleService.findByUserId(user.getId());
 		List<GrantedAuthority>	grantedAuthorities =new ArrayList<GrantedAuthority>();
 		if(Validator.isNotNullOrEmpty(userRoles)){
 			for (Role role : userRoles) {

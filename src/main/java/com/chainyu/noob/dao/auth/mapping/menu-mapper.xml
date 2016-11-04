@@ -4,7 +4,7 @@
 	<sql id="Base_Column_List">
 	id, label, sort_no, url, parent, icon, status, create_time, update_time
 	</sql>
-	<select id="selectById" resultType="Menu">
+	<select id="findById" resultType="Menu">
 		select
 		<include refid="Base_Column_List" />
 		from t_au_menu

@@ -1,16 +1,15 @@
 package com.chainyu.noob.dao.auth;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
+
+import com.chainyu.noob.dao.BaseMapper;
 import com.chainyu.noob.model.auth.domain.RolePrivilege;
 
 
-public interface RolePrivilegeMapper {
-	RolePrivilege selectById(@Param("id")Long id);
-    
-    int deleteById(@Param("id")Long id);
-    
-    int save(RolePrivilege rolePrivilege);
+public interface RolePrivilegeMapper extends BaseMapper<RolePrivilege, Long>{
 
-    int updateByIdSelective(RolePrivilege rolePrivilege);
+	List<RolePrivilege> findByPrivilegeId(@Param("privilegeId")Long privilegeId);
 
 }

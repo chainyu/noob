@@ -7,7 +7,10 @@ import com.chainyu.noob.model.auth.command.PrivilegeUrlRoleCommand;
 
 public interface PrivilegeUrlService {
 
-	public List<PrivilegeUrlRoleCommand> findAllUrls();
+	/**
+	 * @return
+	 */
+	public List<PrivilegeUrlRoleCommand> findAllPrivilegeUrlRoles();
 
 
 }

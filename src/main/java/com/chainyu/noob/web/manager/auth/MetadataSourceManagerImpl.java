@@ -62,21 +62,18 @@ public class MetadataSourceManagerImpl implements
 	@PostConstruct
 	public void loadResourceDefine() throws Exception {
 		Map<String, Collection<ConfigAttribute>> localResourceMap =new HashMap<String, Collection<ConfigAttribute>>();
-		List<PrivilegeUrlRoleCommand> urlRoleCommands =privilegeUrlService.findAllUrls();
+		List<PrivilegeUrlRoleCommand> urlRoleCommands =privilegeUrlService.findAllPrivilegeUrlRoles();
 		if(Validator.isNotNullOrEmpty(urlRoleCommands)){
 			for (PrivilegeUrlRoleCommand privilegeUrlRoleCommand : urlRoleCommands) {
 				String url=privilegeUrlRoleCommand.getUrl();
-				String attribute=privilegeUrlRoleCommand.getRoleId().toString();
-				Collection<ConfigAttribute> attributes = localResourceMap.get(url);
-				if(Validator.isNullOrEmpty(attributes)){
-					attributes=new ArrayList<ConfigAttribute>();
-					attributes.add(new SecurityConfig(attribute));
-				}else{
-					if(!attributes.contains(attribute)){
-						attributes.add(new SecurityConfig(attribute));
+				List<String> roleIds = privilegeUrlRoleCommand.getRoleIds();
+				if(Validator.isNotNullOrEmpty(roleIds)){
+					Collection<ConfigAttribute> attributes=new ArrayList<ConfigAttribute>();
+					for (String roleId : roleIds) {
+						attributes.add(new SecurityConfig(roleId));
 					}
+					localResourceMap.put(url, attributes);
 				}
-				localResourceMap.put(url, attributes);
 			}
 		}
 		resourceMap = localResourceMap;
