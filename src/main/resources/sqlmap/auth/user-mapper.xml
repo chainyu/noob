@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chainyu.noob.dao.auth.UserMapper">
+	<sql id="Base_Column_List">
+		id, user_name, password, status, create_time, update_time, real_name,
+		first_name,
+		last_name, email, mobile, phone, description, avatar, last_password,
+		pwd_change_time
+	</sql>
+	
+	<select id="findById" resultType="User">
+		select
+		<include refid="Base_Column_List" />
+		from t_au_user
+		where id = #{id}
+	</select>
+	
+	<select id="findByUserName" resultType="User">
+	select
+		<include refid="Base_Column_List" />
+		from t_au_user
+		where user_name = #{userName}
+	</select>
+	
+	<delete id="deleteById">
+		delete from t_au_user
+		where id = #{id}
+	</delete>
+	
+	<insert id="save" parameterType="User">
+		insert into t_au_user (
+		user_name,
+		password,
+		status,
+		create_time,
+		update_time,
+		real_name,
+		first_name,
+		last_name,
+		email,
+		mobile,
+		phone,
+		description,
+		avatar,
+		last_password,
+		pwd_change_time)
+		values (
+		#{userName},
+		#{password},
+		#{status},
+		now(),
+		now(),
+		#{realName},
+		#{firstName},
+		#{lastName},
+		#{email},
+		#{mobile},
+		#{phone},
+		#{description},
+		#{avatar},
+		#{lastPassword},
+		now())
+	</insert>
+	
+	<update id="updateByIdSelective" parameterType="User">
+		update t_au_user
+		<set>
+			update_time = now()
+			<if test="userName != null">
+				user_name = #{userName},
+			</if>
+			<if test="password != null">
+				password = #{password},
+			</if>
+			<if test="status != null">
+				status = #{status},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime},
+			</if>
+			<if test="realName != null">
+				real_name = #{realName},
+			</if>
+			<if test="firstName != null">
+				first_name = #{firstName},
+			</if>
+			<if test="lastName != null">
+				last_name = #{lastName},
+			</if>
+			<if test="email != null">
+				email = #{email},
+			</if>
+			<if test="mobile != null">
+				mobile = #{mobile},
+			</if>
+			<if test="phone != null">
+				phone = #{phone},
+			</if>
+			<if test="description != null">
+				description = #{description},
+			</if>
+			<if test="avatar != null">
+				avatar = #{avatar},
+			</if>
+			<if test="lastPassword != null">
+				last_password = #{lastPassword},
+			</if>
+			<if test="pwdChangeTime != null">
+				pwd_change_time = #{pwdChangeTime},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+</mapper>

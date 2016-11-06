@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chainyu.noob.dao.auth.PrivilegeMapper">
+	<sql id="Base_Column_List">
+	id, code, name, description, group_name, status, create_time, update_time 
+	</sql>
+	<select id="findById" resultType="Privilege">
+		select
+		<include refid="Base_Column_List" />
+		from t_au_Privilege
+		where id = #{id}
+	</select>
+	<delete id="deleteById">
+		delete from t_au_privilege
+		where id = #{id}
+	</delete>
+	<insert id="save" parameterType="Privilege">
+		insert into t_au_privilege (
+		code, 
+		name, 
+		description, 
+		group_name, 
+		status, 
+		create_time, 
+		update_time)
+		values (
+		code, 
+		name, 
+		description, 
+		groupName, 
+		status, 
+		now(), 
+		now())
+	</insert>
+	<update id="updateByIdSelective" parameterType="Privilege">
+		update t_au_privilege
+		<set>
+			update_time = now()
+			<if test="code != null">
+				code = #{code},
+			</if>
+			<if test="name != null">
+				name = #{name},
+			</if>
+			<if test="description != null">
+				description = #{description},
+			</if>
+			<if test="groupName != null">
+				group_name = #{groupName},
+			</if>
+			<if test="status != null">
+				status = #{status},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+</mapper>

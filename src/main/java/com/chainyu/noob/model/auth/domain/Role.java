@@ -20,6 +20,16 @@ public class Role extends BaseModel{
 
 	/** 状态. */
 	private Byte status;
+	
+	private Boolean isAdmin;
+
+	public Boolean getIsAdmin() {
+		return isAdmin;
+	}
+
+	public void setIsAdmin(Boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
 
 	/** 创建时间. */
 	private Date createTime;

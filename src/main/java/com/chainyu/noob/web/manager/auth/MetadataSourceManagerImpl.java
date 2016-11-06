@@ -19,7 +19,7 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.stereotype.Service;
 
 import com.chainyu.noob.model.auth.command.PrivilegeUrlRoleCommand;
-import com.chainyu.noob.service.PrivilegeUrlService;
+import com.chainyu.noob.service.auth.PrivilegeUrlService;
 import com.chainyu.noob.utils.Validator;
 
 

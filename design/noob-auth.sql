@@ -30,7 +30,6 @@ CREATE TABLE T_AU_MENU
 );
 
 
-
 CREATE TABLE T_AU_PRIVILEGE
 (
 	id bigint NOT NULL AUTO_INCREMENT,
@@ -64,6 +63,7 @@ CREATE TABLE T_AU_ROLE
 	name varchar(255) NOT NULL,
 	description varchar(1000),
 	status tinyint NOT NULL,
+	is_admin tinyint DEFAULT 0 NOT NULL,
 	create_time datetime NOT NULL,
 	update_time timestamp,
 	PRIMARY KEY (id)

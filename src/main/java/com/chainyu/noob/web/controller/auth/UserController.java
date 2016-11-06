@@ -10,7 +10,7 @@ import com.chainyu.noob.web.controller.BaseController;
 @RequestMapping("/user")
 public class UserController extends BaseController{
 
-	@RequestMapping("/info.htm")
+	@RequestMapping("/userManage.htm")
 	public String showUserInfo(Model model){
 		model.addAttribute("name", "zhangsan");
 		return "/showInfo";

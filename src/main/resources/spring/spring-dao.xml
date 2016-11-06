@@ -48,20 +48,20 @@
     <!-- 注解方式配置事物 -->  
     <tx:annotation-driven transaction-manager="transactionManager" />
     
-    <!-- myBatis文件 -->  
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">  
-        <property name="dataSource" ref="dataSource" />  
-        <!-- 自动扫描entity目录, 省掉Configuration.xml里的手工配置 -->  
-        <property name="mapperLocations" value="classpath:com/chainyu/noob/dao/**/mapping/*.xml" />
-        <property name="typeAliasesPackage" value="com.chainyu.noob.dao.model" />
-		<property name="configLocation" value="classpath:mybatis-config.xml"></property>  
-    </bean>  
-    
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">  
         <property name="basePackage" value="com.chainyu.noob.dao" />  
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />  
     </bean>  
-  
+    
+    <!-- myBatis文件 -->  
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">  
+        <property name="dataSource" ref="dataSource" />  
+        <!-- 自动扫描entity目录, 省掉Configuration.xml里的手工配置 -->  
+        <property name="mapperLocations" value="classpath:sqlmap/**/*.xml" />
+        <property name="typeAliasesPackage" value="com.chainyu.noob.model" />
+		<property name="configLocation" value="classpath:spring/mybatis-config.xml"></property>  
+    </bean>  
+    
     <!-- 配置事务管理器 -->  
     <bean id="transactionManager"  
         class="org.springframework.jdbc.datasource.DataSourceTransactionManager">  

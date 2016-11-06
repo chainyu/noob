@@ -10,7 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.chainyu.noob.model.auth.domain.User;
-import com.chainyu.noob.service.UserService;
+import com.chainyu.noob.service.auth.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)  
 @ContextConfiguration(locations = { "classpath:spring-context.xml",  
@@ -32,7 +32,7 @@ public class UserTest {
 		user.setPassword("123456");
 		user.setStatus((byte)1);
 		user.setCreateTime(date);
-		int i = userService.insert(user);
+		int i = userService.save(user);
 		LOGGER.debug("test insert user......result[{"+i+"}]");
 	}
 }

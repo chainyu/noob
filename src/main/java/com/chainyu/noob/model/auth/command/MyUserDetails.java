@@ -25,16 +25,29 @@ public class MyUserDetails implements org.springframework.security.core.userdeta
 	 */
 	private User user ;
 	
+	private Boolean isAdmin;
+	
+
+	public Boolean getIsAdmin() {
+		return isAdmin;
+	}
+
+
+	public void setIsAdmin(Boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+
 
 	public MyUserDetails() {
 		super();
 	}
 	
 
-	public MyUserDetails(Collection<GrantedAuthority> authorities, User user) {
+	public MyUserDetails(Collection<GrantedAuthority> authorities, User user,boolean isAdmin) {
 		super();
 		this.authorities = authorities;
 		this.user = user;
+		this.isAdmin=isAdmin;
 	}
 
 
