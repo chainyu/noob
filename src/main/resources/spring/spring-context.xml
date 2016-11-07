@@ -8,14 +8,33 @@
            http://www.springframework.org/schema/aop/spring-aop.xsd
            http://www.springframework.org/schema/context
            http://www.springframework.org/schema/context/spring-context.xsd">  
+           
+           <bean id="csrfFilter" class="org.springframework.security.web.csrf.CsrfFilter">
+		<constructor-arg>
+			<bean
+				class="org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository" />
+		</constructor-arg>
+	</bean>
+	
+	<bean id="multipartResolver" name="multipartResolver"
+		class="com.chainyu.noob.web.security.SecurityCommonsMultipartResolver">
+		<property name="maxUploadSize" value="100000000" />
+	</bean>
+	
+	<bean class="com.chainyu.noob.web.security.SecurityConfig" >
+		<property name="ignoreParameters">
+			<set>
+				<value>_csrf</value>
+			</set>
+		</property>
+	</bean>
   
     <!--引入配置属性文件 -->  
     <context:property-placeholder location="classpath:spring/config.properties" />  
   
     <!--自动扫描含有@Service将其注入为bean -->  
     <context:component-scan base-package="com.chainyu.noob.service.**.impl" />  
-    
-    <import resource="classpath:spring/spring-security.xml" />
     <import resource="classpath:spring/spring-dao.xml" />
+    <import resource="classpath:spring/spring-security.xml" />
   
 </beans>  

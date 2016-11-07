@@ -13,8 +13,8 @@ import com.chainyu.noob.model.auth.domain.User;
 import com.chainyu.noob.service.auth.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)  
-@ContextConfiguration(locations = { "classpath:spring-context.xml",  
-        "classpath:spring-dao.xml" })
+@ContextConfiguration(locations = { "classpath:spring/spring-context.xml",  
+        "classpath:spring/spring-dao.xml" })
 public class UserTest {
 
 	private static final Logger LOGGER = Logger  

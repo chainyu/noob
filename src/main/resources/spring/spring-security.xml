@@ -3,14 +3,22 @@
 	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  
                         http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">  
-  <!-- 该路径下的资源不用过滤 -->
+  <!-- 该路径下的资源不用过滤。其中**代表可以跨越目录，*不可以跨越目录-->
 	<http pattern="/**/*.js" security="none" />
-	<http pattern="/**/*.swf" security="none" />
 	<http pattern="/**/*.css" security="none" />
 	<http pattern="/**/*.jpg" security="none" />
 	<http pattern="/**/*.png" security="none" />
 	<http pattern="/**/*.gif" security="none" />
 	<http pattern="/**/*.ico" security="none" />
+	<http pattern="/**/*.swf" security="none" />
+	<http pattern="/**/*.xml" security="none" />
+	<http pattern="/**/*.mp3" security="none" />
+	<http pattern="/**/*.wma" security="none" />
+	<http pattern="/**/*.wav" security="none" />
+	<http pattern="/**/*.amr" security="none" />
+	<http pattern="/**/*.woff" security="none" />
+	<http pattern="/**/*.woff2" security="none" />
+	<http pattern="/**/*.ttf" security="none" />
 	<http pattern="/login.htm" security="none" />
 	
     <http use-expressions="true" auto-config="false"
@@ -62,9 +70,9 @@
 	<authentication-manager alias="myAuthenticationManager">
 		<authentication-provider user-service-ref="userDetailManagerImpl">
 			<!-- 登入 密码 采用Sha加密 -->
-			<password-encoder ref="passwordEncoder">
+			<!-- <password-encoder ref="passwordEncoder">
 				<salt-source user-property="username" />
-			</password-encoder>
+			</password-encoder> -->
 		</authentication-provider>
 	</authentication-manager>
 

@@ -17,7 +17,7 @@ public class SecurityController extends BaseController {
 	
 	@RequestMapping("/login.htm")
 	public String Login(){
-		return "/login";
+		return "login";
 	}
 	
 	
