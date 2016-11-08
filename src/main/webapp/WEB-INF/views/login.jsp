@@ -8,6 +8,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<script type="text/javascript">
+var _ctx='${ctx}';
+</script>
         <meta charset="utf-8" />
         <title>Metronic | User Login 4</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -48,7 +51,7 @@
         <!-- BEGIN LOGIN -->
         <div class="content">
             <!-- BEGIN LOGIN FORM -->
-            <form class="login-form" action="index.html" method="post">
+            <form class="login-form" id="loginForm" method="post" action="/noob/j_spring_security_check">
                 <h3 class="form-title">Login to your account</h3>
                 <div class="alert alert-danger display-hide">
                     <button class="close" data-close="alert"></button>
@@ -59,13 +62,13 @@
                     <label class="control-label visible-ie8 visible-ie9">Username</label>
                     <div class="input-icon">
                         <i class="fa fa-user"></i>
-                        <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Username" name="username" /> </div>
+                        <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Username" name="j_username"/> </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">Password</label>
                     <div class="input-icon">
                         <i class="fa fa-lock"></i>
-                        <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="password" /> </div>
+                        <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="j_password" /> </div>
                 </div>
                 <div class="form-actions">
                     <label class="checkbox">
@@ -102,7 +105,7 @@
             </form>
             <!-- END LOGIN FORM -->
             <!-- BEGIN FORGOT PASSWORD FORM -->
-            <form class="forget-form" action="index.html" method="post">
+            <form class="forget-form" id="loginForm" method="post" action="${cxt}/j_spring_security_check">
                 <h3>Forget Password ?</h3>
                 <p> Enter your e-mail address below to reset your password.</p>
                 <div class="form-group">
